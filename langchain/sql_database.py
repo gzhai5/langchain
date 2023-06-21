@@ -357,7 +357,6 @@ class SQLDatabase:
                 # Convert columns values to string to avoid issues with sqlalchmey
                 # trunacating text
                 if isinstance(result, list):
-                    ssssssssssssssssssssss
                     return result
                     # return str(
                     #     [
