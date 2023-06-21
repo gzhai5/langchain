@@ -1,7 +1,6 @@
 """Chain for interacting with SQL Database."""
 from __future__ import annotations
 
-import sys
 import warnings
 from typing import Any, Dict, List, Optional
 
@@ -150,12 +149,12 @@ class SQLDatabaseChain(Chain):
                     {"sql_cmd": checked_sql_command}
                 )  # input: sql exec
                 result = self.database.run(checked_sql_command)
-                # intermediate_steps.append(str(result))  # output: sql exec
 
                 intermediate_steps.append(
-                    {"sql_pure_result": result}
+                    {"sql_pure_res": result}
                 )
 
+                # intermediate_steps.append(str(result))  # output: sql exec
                 sql_cmd = checked_sql_command
 
             _run_manager.on_text("\nSQLResult: ", verbose=self.verbose)
