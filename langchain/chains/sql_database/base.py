@@ -149,8 +149,13 @@ class SQLDatabaseChain(Chain):
                 intermediate_steps.append(
                     {"sql_cmd": checked_sql_command}
                 )  # input: sql exec
-                result = self.database.run(checked_sql_command, 0)
-                intermediate_steps.append(str(result))  # output: sql exec
+                result = self.database.run(checked_sql_command)
+                # intermediate_steps.append(str(result))  # output: sql exec
+
+                intermediate_steps.append(
+                    {"sql_pure_result": result}
+                )
+
                 sql_cmd = checked_sql_command
 
             _run_manager.on_text("\nSQLResult: ", verbose=self.verbose)

@@ -328,7 +328,7 @@ class SQLDatabase:
             f"{sample_rows_str}"
         )
 
-    def run(self, command: str, fetch: str = "all", flag: int = 0) -> str:
+    def run(self, command: str, fetch: str = "all"):
         """Execute a SQL command and return a string representing the results.
 
         If the statement returns rows, a string of the results is returned.
@@ -357,17 +357,16 @@ class SQLDatabase:
                 # Convert columns values to string to avoid issues with sqlalchmey
                 # trunacating text
                 if isinstance(result, list):
-                    if flag == -1:
-                        return result
-                    return str(
-                        [
-                            tuple(
-                                truncate_word(c, length=self._max_string_length)
-                                for c in r
-                            )
-                            for r in result
-                        ]
-                    )
+                    return result
+                    # return str(
+                    #     [
+                    #         tuple(
+                    #             truncate_word(c, length=self._max_string_length)
+                    #             for c in r
+                    #         )
+                    #         for r in result
+                    #     ]
+                    # )
 
                 return str(
                     tuple(
