@@ -51,6 +51,8 @@ class SQLDatabaseChain(Chain):
     query_checker_prompt: Optional[BasePromptTemplate] = None
     """The prompt template that should be used by the query checker"""
 
+    print("get the here!!!!!!!!!!!!!!!!!!!")
+
     class Config:
         """Configuration for this pydantic object."""
 
@@ -97,6 +99,9 @@ class SQLDatabaseChain(Chain):
         inputs: Dict[str, Any],
         run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, Any]:
+
+        print("get here!!!!!!!!!!!!!!!!!!!")
+
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         input_text = f"{inputs[self.input_key]}\nSQLQuery:"
         _run_manager.on_text(input_text, verbose=self.verbose)
@@ -149,7 +154,7 @@ class SQLDatabaseChain(Chain):
                     {"sql_cmd": checked_sql_command}
                 )  # input: sql exec
                 result = self.database.run(checked_sql_command)
-
+                
                 intermediate_steps.append(
                     {"sql_pure_res": result}
                 )
