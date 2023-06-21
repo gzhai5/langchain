@@ -328,7 +328,7 @@ class SQLDatabase:
             f"{sample_rows_str}"
         )
 
-    def run(self, command: str, fetch: str = "all") -> str:
+    def run(self, command: str, fetch: str = "all", flag: int = 0) -> str:
         """Execute a SQL command and return a string representing the results.
 
         If the statement returns rows, a string of the results is returned.
@@ -357,6 +357,8 @@ class SQLDatabase:
                 # Convert columns values to string to avoid issues with sqlalchmey
                 # trunacating text
                 if isinstance(result, list):
+                    if flag == -1:
+                        return result
                     return str(
                         [
                             tuple(

@@ -149,9 +149,8 @@ class SQLDatabaseChain(Chain):
                 intermediate_steps.append(
                     {"sql_cmd": checked_sql_command}
                 )  # input: sql exec
-                result = self.database.run(checked_sql_command)
-                intermediate_steps.append(str(result)+"fuck!!!!!!")  # output: sql exec
-                print('result inside the langchain source:', result, file=sys.stderr)
+                result = self.database.run(checked_sql_command, 0)
+                intermediate_steps.append(str(result))  # output: sql exec
                 sql_cmd = checked_sql_command
 
             _run_manager.on_text("\nSQLResult: ", verbose=self.verbose)
